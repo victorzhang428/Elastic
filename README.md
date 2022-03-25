@@ -5,11 +5,7 @@
 Create an index
 
 ```markdown
-PUT /griffin/container/id_1
- {
-   "cntr_no": "no_1",   "customer_no": "BBB",   "poa": "USMNT",   "cntr_size": "20",   "ocean_fgt": 1000,
-   "last_user": "Tom",   "last_datetime": "2022-03-23 22:58:12"
- }
+PUT http://localhost:9201/girffin
 ```
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
