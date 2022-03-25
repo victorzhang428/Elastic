@@ -4,7 +4,6 @@
 
 Create an index
 
-{% include codeHeader.html %}
 ```markdown
 PUT /griffin/container/id_1
  {
