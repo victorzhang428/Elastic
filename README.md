@@ -12,7 +12,6 @@ PUT /griffin/container/id_1
    "last_user": "Tom",   "last_datetime": "2022-03-23 22:58:12"
  }
 ```
-
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 ### Jekyll Themes
