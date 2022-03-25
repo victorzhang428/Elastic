@@ -1,29 +1,15 @@
-## Welcome to GitHub Pages
+## Welcome to Elasticsearch Training Snippets
 
-You can use the [editor on GitHub](https://github.com/victorzhang428/Elastic/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+### Work With Index
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Create an index
 
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+PUT /griffin/container/id_1
+ {
+   "cntr_no": "no_1",   "customer_no": "BBB",   "poa": "USMNT",   "cntr_size": "20",   "ocean_fgt": 1000,
+   "last_user": "Tom",   "last_datetime": "2022-03-23 22:58:12"
+ }
 ```
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
