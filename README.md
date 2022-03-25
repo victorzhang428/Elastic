@@ -1,5 +1,5 @@
 ## Welcome to Elasticsearch Training Snippets
-<script src="/assets/scripts/copyCode.js"></script>
+
 ### Work With Index
 
 Create an index
