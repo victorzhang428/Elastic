@@ -46,6 +46,47 @@ POST /containers/_open
 DELETE /containers
 ```
 
+### Work With Simple Document
+
+#### 1. Create documents
+```markdown
+PUT /containers/container/id_1
+{
+    "cntr_no": "no_1",
+    "customer_no": "BBB",
+    "poa": "USMNT",
+    "cntr_size": "20",
+    "ocean_fgt": 1000,
+    "last_user": "Tom",
+    "last_datetime": "2022-03-23 22:58:12"
+}
+```
+
+```markdown
+PUT /containers/container/id_2
+ {
+    "cntr_no": "no_2",
+    "customer_no": "CNS",
+    "poa": "USMNT",
+    "cntr_size": "40",
+    "ocean_fgt": 2000,
+    "last_user": "Jack",
+    "last_datetime": "2022-03-23 22:33:29"
+}
+```
+```markdown
+PUT /containers/container/id_3
+ {
+    "cntr_no": "no_3",
+    "customer_no": "FDS",
+    "poa": "USMNT",
+    "cntr_size": "45",
+    "ocean_fgt": 3000,
+    "last_user": "John",
+    "last_datetime": "2022-03-23 22:05:17"
+}
+```
+
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 ### Jekyll Themes
