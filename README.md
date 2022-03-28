@@ -58,7 +58,7 @@ PUT /containers/container/id_1
     "cntr_size": "20",
     "ocean_fgt": 1000,
     "last_user": "Tom",
-    "last_datetime": "2022-03-23 22:58:12"
+    "last_datetime": "2022-03-20 22:58:12"
 }
 ```
 
@@ -83,7 +83,7 @@ PUT /containers/container/id_3
     "cntr_size": "45",
     "ocean_fgt": 3000,
     "last_user": "John",
-    "last_datetime": "2022-03-23 22:05:17"
+    "last_datetime": "2022-03-26 22:05:17"
 }
 ```
 #### 2. Get document by ID
@@ -132,7 +132,7 @@ POST /containers/_search
     "_source": false
 }
 ```
-#### 5. Get document by IN condition (select top 2 * from container order by ocean_fgt desc)
+#### 5. Get document by pagination (select top 2 * from container order by ocean_fgt desc)
 
 ```markdown
 POST /containers/_search
@@ -149,6 +149,87 @@ POST /containers/_search
             }
         }
     ]
+}
+```
+#### 6. Get document by range (select * from container where ocean_fgt >=0 and ocean_fgt <= 2000 )
+
+```markdown
+POST /containers/_search
+{
+    "fields": [
+        "customer_no",
+        "cntr_no",
+        "last_datetime",
+        "ocean_fgt"
+    ],
+    "query": {
+        "range": {
+            "ocean_fgt": {
+                "gte": 0,
+                "lte": 2000
+            }
+        }
+    },
+    "_source": false
+}
+```
+#### 7. Get document by date range (select * from container where last_datetime >='03/21/2022' and last_datetime >='03/25/2022' )
+
+```markdown
+POST /containers/_search
+{
+    "fields": [
+        "customer_no",
+        "cntr_no",
+        "last_datetime",
+        "ocean_fgt"
+    ],
+    "query": {
+        "range": {
+            "last_datetime": {
+                "gte": "2022-03-21 00:00:00",
+                "lte": "2022-03-25 00:00:00"
+            }
+        }
+    },
+    "_source": false
+}
+```
+#### 8. Get MAX (select max_ocean_fgt=max(ocean_fgt) from container )
+
+```markdown
+POST /containers/_search
+{
+    "size": 0,
+    "aggs": {
+    "max_ocean_fgt": { "max": { "field": "ocean_fgt" } }
+  }
+}
+```
+#### 9. Update a document by ID
+
+```markdown
+POST /containers/id_1/_update
+{
+    "doc":{
+        "last_user":"Tom"
+    }
+}
+```
+#### 9. Update a document by ID
+
+```markdown
+POST /containers/container/_update_by_query
+{
+    "script": {
+        "source": "ctx._source.ocean_fgt=4000",
+        "lang": "painless"
+    },
+    "query": {
+        "match": {
+            "last_user": "John"
+        }
+    }
 }
 ```
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
