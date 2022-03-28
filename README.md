@@ -5,8 +5,47 @@
 Create an index
 
 ```markdown
-PUT http://localhost:9201/girffin
+PUT /containers
 ```
+
+Get an index
+
+```markdown
+GET /containers
+```
+
+Find an index
+
+```markdown
+HEAD /containers
+```
+
+Close an index
+
+```markdown
+POST /containers/_close
+```
+
+Update settings of an index
+
+```markdown
+PUT /containers/_settings
+{
+      "index" : {
+         "number_of_shards" : 3,
+         "number_of_replicas" : 2
+      }
+}
+```
+Open an index
+```markdown
+POST /containers/_open
+```
+Delete an index
+```markdown
+DELETE /containers
+```
+
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 ### Jekyll Themes
