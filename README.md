@@ -89,7 +89,7 @@ PUT /containers/container/id_3
 #### 2. Get document by ID
 
 ```markdown
-GET /containers/id_1
+GET /containers/container/id_1
 ```
 #### 2. Get document by URI
 
@@ -117,7 +117,7 @@ POST /containers/_search
 #### 4. Get document by IN condition (where last_user in ("John, "Tom"))
 
 ```markdown
-POST /containers/_search
+GET /containers/_search
 {
     "fields": [
         "customer_no",
@@ -125,7 +125,7 @@ POST /containers/_search
         "last_datetime"
     ],
     "query": {
-        "term": {
+        "terms": {
             "last_user": ["John", "Tom"]
         }
     },
