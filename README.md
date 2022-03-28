@@ -212,11 +212,11 @@ POST /containers/_search
 POST /containers/id_1/_update
 {
     "doc":{
-        "last_user":"Tom"
+        "last_user":"Victor"
     }
 }
 ```
-#### 9. Update a document by ID
+#### 10. Update a document by ID
 
 ```markdown
 POST /containers/container/_update_by_query
