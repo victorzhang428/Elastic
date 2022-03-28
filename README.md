@@ -20,7 +20,7 @@ GET /containers
 HEAD /containers
 ```
 
-#### 4. Close an index
+#### 4. Close an index (index needs to be closed before updating its settings)
 
 ```markdown
 POST /containers/_close
