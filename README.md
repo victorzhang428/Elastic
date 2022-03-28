@@ -26,7 +26,7 @@ HEAD /containers
 POST /containers/_close
 ```
 
-#### 5. Update settings of an index
+#### 5. Update settings of an index (Dynamic vs Static Setting)
 
 ```markdown
 PUT /containers/_settings
