@@ -86,7 +86,71 @@ PUT /containers/container/id_3
     "last_datetime": "2022-03-23 22:05:17"
 }
 ```
+#### 2. Get document by ID
 
+```markdown
+GET /containers/id_1
+```
+#### 2. Get document by URI
+
+```markdown
+GET /containers/_search?q=cntr_no:no_1
+```
+#### 3. Get document by request body
+
+```markdown
+POST /containers/_search
+{
+    "fields": [
+        "customer_no",
+        "cntr_no",
+        "last_datetime"
+    ],
+    "query": {
+        "match": {
+            "last_user": "John"
+        }
+    },
+    "_source": false
+}
+```
+#### 4. Get document by IN condition (where last_user in ("John, "Tom"))
+
+```markdown
+POST /containers/_search
+{
+    "fields": [
+        "customer_no",
+        "cntr_no",
+        "last_datetime"
+    ],
+    "query": {
+        "term": {
+            "last_user": ["John", "Tom"]
+        }
+    },
+    "_source": false
+}
+```
+#### 5. Get document by IN condition (select top 2 * from container order by ocean_fgt desc)
+
+```markdown
+POST /containers/_search
+{
+    "from": 0,
+    "size": 2,
+    "query": {
+        "match_all": {}
+    },
+    "sort": [
+        {
+            "ocean_fgt": {
+                "order": "desc"
+            }
+        }
+    ]
+}
+```
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 ### Jekyll Themes
