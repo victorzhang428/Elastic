@@ -2,31 +2,31 @@
 
 ### Work With Index
 
-#### Create an index
+#### 1. Create an index
 
 ```markdown
-#### PUT /containers
+PUT /containers
 ```
 
-#### Get an index
+#### 2. Get an index
 
 ```markdown
 GET /containers
 ```
 
-#### Find an index
+#### 3. Find an index
 
 ```markdown
 HEAD /containers
 ```
 
-#### Close an index
+#### 4. Close an index
 
 ```markdown
 POST /containers/_close
 ```
 
-#### Update settings of an index
+#### 5. Update settings of an index
 
 ```markdown
 PUT /containers/_settings
@@ -37,11 +37,11 @@ PUT /containers/_settings
       }
 }
 ```
-#### Open an index
+#### 6. Open an index
 ```markdown
 POST /containers/_open
 ```
-#### Delete an index
+#### 7. Delete an index
 ```markdown
 DELETE /containers
 ```
