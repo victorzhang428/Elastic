@@ -372,6 +372,17 @@ POST /containers2/_search
 
 
 ```
+But when search by cntr_no text like this, there will be result.
+```markdown
+POST /containers2/_search
+{
+    "query": {
+        "match": {
+        "cntr_no": "container 30"
+        }
+    }
+}
+```
 ##### The primary difference between the text datatype and the keyword datatype is that text fields are analyzed at the time of indexing, and keyword fields are not. What that means is, text fields are broken down into their individual terms at indexing to allow for partial matching, while keyword fields are indexed as is.
 
 #### 3. Get document by date range
