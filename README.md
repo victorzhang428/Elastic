@@ -115,7 +115,7 @@ POST /containers/_search
 }
 ```
 #### 4. Get document by IN condition (where last_user in ("John, "Tom"))
- Why it doesn't work with uppcase explained [here] (https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html#:~:text=To%20better%20search%20text%20fields,the%20exact%20term%20you%20provide).
+ Why it doesn't work with uppcase explained your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages).
 
 
 ```markdown
