@@ -236,47 +236,58 @@ POST /containers/container/_update_by_query
 ```
 ### Work on Index with Mapping
 
-#### 1. Create a new index
+#### 1. Create a new index with mapping
 
 ```markdown
 PUT /containers2
-```
-#### 2. Create mapping for the index
-
-```markdown
-PUT /containers2/_mapping
 {
-    "properties": {
-        "cntr_no": {
-            "type": "text",
-            "fields": {
-                "keyworld": {
-                    "ignore_above": 30,
-                    "type": "keyword"
-                }
-            }
-        },
-        "customer_no": {"type": "text"},
-        "poa": {"type": "text"},
-        "poa_loc": {"type": "geo_point"},
-        "cntr_size": {"type": "integer"},
-        "ocean_fgt": {"type": "double"},
-        "last_user": {
-            "type": "text",
-            "fields": {
-                "keyworld": {
-                    "ignore_above": 256,
-                    "type": "keyword"
-                }
-            }
-        },
-        "last_datetime": {
-            "type": "date",
-            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
-        }
-    }
+    "settings": {
+        "number_of_shards": 1
+    },
+    "mappings": {
+          "properties": {
+              "cntr_no": {
+                  "type": "text",
+                  "fields": {
+                      "keyworld": {
+                          "ignore_above": 30,
+                          "type": "keyword"
+                      }
+                  }
+              },
+              "customer_no": {
+                  "type": "text"
+              },
+              "poa": {
+                  "type": "text"
+              },
+              "poa_loc": {
+                  "type": "geo_point"
+              },
+              "cntr_size": {
+                  "type": "integer"
+              },
+              "ocean_fgt": {
+                  "type": "double"
+              },
+              "last_user": {
+                  "type": "text",
+                  "fields": {
+                      "keyworld": {
+                          "ignore_above": 256,
+                          "type": "keyword"
+                      }
+                  }
+              },
+              "last_datetime": {
+                  "type": "date",
+                  "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+              }
+          }
+     }    
 }
-#### 3. Add documents
+```
+#### 2. Add documents
 ```markdown
 PUT /containers2/container/id_1
 {
