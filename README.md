@@ -249,7 +249,7 @@ PUT /containers2
               "cntr_no": {
                   "type": "text",
                   "fields": {
-                      "keyworld": {
+                      "keyword": {
                           "ignore_above": 30,
                           "type": "keyword"
                       }
@@ -273,7 +273,7 @@ PUT /containers2
               "last_user": {
                   "type": "text",
                   "fields": {
-                      "keyworld": {
+                      "keyword": {
                           "ignore_above": 256,
                           "type": "keyword"
                       }
