@@ -340,6 +340,38 @@ PUT /containers2/_doc/id_3
 }
 
 ```
+#### 3. Validate ignore_above
+This document will be indexed, but without indexing the message field.
+```markdown
+PUT /containers2/_doc/id_4
+{
+   "cntr_no": "container_no_more_than_30_characters",   
+   "customer_no": "FDS",   
+    "poa": "USLAX",  
+     "poa_loc": {
+      "lat": "34.0522",
+      "lon": "118.2437"
+    },
+    "cntr_size": "45",   
+    "ocean_fgt": 4000,   
+    "last_user": "John",
+   "last_datetime": "2022-03-26 22:05:17"
+}
+
+```
+So when search by this, there will be no hit.
+```markdown
+POST /containers/_search
+{
+   
+    "query": {
+        "match": {
+        "cntr_no": "container_no_more_than_30_characters"
+        }
+    }
+}
+
+```
 #### 3. Get document by date range
 ```markdown
 POST /containers2/_search
