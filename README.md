@@ -307,7 +307,6 @@ PUT /containers2/_doc/id_1
 ```
 ```markdown
 PUT /containers2/_doc/id_2
-PUT /containers/container/id_2
  {
    "cntr_no": "no_2",   
    "customer_no": "CNS",   
