@@ -276,8 +276,22 @@ PUT /containers2/_mapping
         }
     }
 }
-
-
+#### 3. Add documents
+```markdown
+PUT /containers2/container/id_1
+{
+    "cntr_no": "no_1",
+    "customer_no": "BBB",
+    "poa": "USMNT",
+    "poa_loc": {
+      "lat": "32.3792",
+      "lon": "86.3077"
+    },
+    "cntr_size": 20,
+    "ocean_fgt": 1000,
+    "last_user": "Tom",
+    "last_datetime": "2022-03-23 22:58:12"
+}
 
 ```
 ### Jekyll Themes
