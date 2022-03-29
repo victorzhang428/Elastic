@@ -289,7 +289,7 @@ PUT /containers2
 ```
 #### 2. Add documents
 ```markdown
-PUT /containers2/container/id_1
+PUT /containers2/_doc/id_1
 {
     "cntr_no": "no_1",
     "customer_no": "BBB",
