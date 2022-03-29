@@ -341,7 +341,7 @@ PUT /containers2/_doc/id_3
 
 ```
 #### 3. Validate ignore_above
-This document will be indexed, but without indexing the message field.
+This document will be indexed, but without indexing the "cntr_no" field.
 ```markdown
 PUT /containers2/_doc/id_4
 {
