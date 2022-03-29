@@ -385,6 +385,37 @@ POST /containers2/_search
 ```
 ##### The primary difference between the text datatype and the keyword datatype is that text fields are analyzed at the time of indexing, and keyword fields are not. What that means is, text fields are broken down into their individual terms at indexing to allow for partial matching, while keyword fields are indexed as is.
 
+#### 4. Update mapping for an index
+
+Change ignore_above from 30 to 100:
+```markdown
+PPUT containers2/_mapping
+{
+    "properties": {
+      "cntr_no": {
+        "type": "text",
+        "fields": {
+          "keyword":{
+            "type": "keyword",
+            "ignore_above": 100
+          }
+        }
+      }
+    }
+  }
+```
+
+Now search again using keyword:
+```markdown
+POST /containers2/_search
+{
+    "query": {
+        "match": {
+        "cntr_no.keyword": "container number more than 30 characters"
+        }
+    }
+}
+```
 #### 3. Get document by date range
 ```markdown
 POST /containers2/_search
@@ -406,6 +437,7 @@ POST /containers2/_search
     "_source": false
 }
 ```
+
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
