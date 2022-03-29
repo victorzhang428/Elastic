@@ -345,7 +345,7 @@ This document will be indexed, but without indexing the "cntr_no" field.
 ```markdown
 PUT /containers2/_doc/id_4
 {
-   "cntr_no": "container_no_more_than_30_characters",   
+   "cntr_no": "container number more than 30 characters",   
    "customer_no": "FDS",   
     "poa": "USLAX",  
      "poa_loc": {
@@ -365,7 +365,7 @@ POST /containers2/_search
 {
     "query": {
         "match": {
-        "cntr_no.keyword": "container_no_more_than_30_characters"
+        "cntr_no.keyword": "container number more than 30 characters"
         }
     }
 }
