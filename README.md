@@ -115,7 +115,7 @@ POST /containers/_search
 }
 ```
 #### 4. Get document by IN condition (where last_user in ("John, "Tom"))
- Why it doesn't work with uppcase explained your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages).
+ Why it doesn't work with uppcase explained [here](https://github.com/victorzhang428/Elastic/settings/pages).
 
 
 ```markdown
