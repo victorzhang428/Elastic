@@ -359,7 +359,7 @@ PUT /containers2/_doc/id_4
 }
 
 ```
-So when search by this, there will be no hit.
+So when search by cntr_no keyword, there will be no result.
 ```markdown
 POST /containers2/_search
 {
