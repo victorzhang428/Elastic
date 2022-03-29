@@ -361,15 +361,15 @@ PUT /containers2/_doc/id_4
 ```
 So when search by this, there will be no hit.
 ```markdown
-POST /containers/_search
+POST /containers2/_search
 {
-   
     "query": {
         "match": {
-        "cntr_no": "container_no_more_than_30_characters"
+        "cntr_no.keyword": "container_no_more_than_30_characters"
         }
     }
 }
+
 
 ```
 #### 3. Get document by date range
