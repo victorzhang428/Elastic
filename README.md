@@ -301,7 +301,7 @@ PUT /containers2/_doc/id_1
     "cntr_size": 20,
     "ocean_fgt": 1000,
     "last_user": "Tom",
-    "last_datetime": "2022-03-23 22:58:12"
+    "last_datetime": "2022-03-20 22:58:12"
 }
 
 ```
