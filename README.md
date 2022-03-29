@@ -115,6 +115,8 @@ POST /containers/_search
 }
 ```
 #### 4. Get document by IN condition (where last_user in ("John, "Tom"))
+ - Why it doesn't work with uppcase explained [here] (https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html#:~:text=To%20better%20search%20text%20fields,the%20exact%20term%20you%20provide.).
+
 
 ```markdown
 GET /containers/_search
@@ -209,14 +211,14 @@ POST /containers/_search
 #### 9. Update a document by ID
 
 ```markdown
-POST /containers/id_1/_update
+POST /containers/container/id_1/_update
 {
     "doc":{
         "last_user":"Victor"
     }
 }
 ```
-#### 10. Update a document by ID
+#### 10. Update a document by condition
 
 ```markdown
 POST /containers/container/_update_by_query
@@ -232,7 +234,6 @@ POST /containers/container/_update_by_query
     }
 }
 ```
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 ### Jekyll Themes
 
