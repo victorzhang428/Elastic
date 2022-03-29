@@ -340,6 +340,27 @@ PUT /containers2/_doc/id_3
 }
 
 ```
+#### 3. Get document by date range
+```markdown
+POST /containers2/_search
+{
+    "fields": [
+        "customer_no",
+        "cntr_no",
+        "last_datetime",
+        "ocean_fgt"
+    ],
+    "query": {
+        "range": {
+            "last_datetime": {
+                "gte": "2022-03-21",
+                "lte": "2022-03-25"
+            }
+        }
+    },
+    "_source": false
+}
+```
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
