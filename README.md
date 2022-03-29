@@ -305,6 +305,42 @@ PUT /containers2/_doc/id_1
 }
 
 ```
+```markdown
+PUT /containers2/_doc/id_2
+PUT /containers/container/id_2
+ {
+   "cntr_no": "no_2",   
+   "customer_no": "CNS",   
+   "poa": "USLGB",   
+   "poa_loc": {
+      "lat": "33.7701",
+      "lon": "118.1937"
+    },
+   "cntr_size": "40",   
+   "ocean_fgt": 2000,   
+   "last_user": "Jack",
+   "last_datetime": "2022-03-23 22:33:29"
+ }
+
+```
+```markdown
+PUT /containers2/_doc/id_3
+{
+   "cntr_no": "no_3",   
+   "customer_no": "FDS",   
+    "poa": "USLAX",  
+     "poa_loc": {
+      "lat": "34.0522",
+      "lon": "118.2437"
+    },
+    "cntr_size": "45",   
+    "ocean_fgt": 3000,   
+    "last_user": "John",
+   "last_datetime": "2022-03-26 22:05:17"
+
+}
+
+```
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
