@@ -234,7 +234,52 @@ POST /containers/container/_update_by_query
     }
 }
 ```
+### Work on Index with Mapping
 
+#### 1. Create a new index
+
+```markdown
+PUT /containers2
+```
+#### 2. Create mapping for the index
+
+```markdown
+PUT /containers2/_mapping
+{
+    "properties": {
+        "cntr_no": {
+            "type": "text",
+            "fields": {
+                "keyworld": {
+                    "ignore_above": 30,
+                    "type": "keyword"
+                }
+            }
+        },
+        "customer_no": {"type": "text"},
+        "poa": {"type": "text"},
+        "poa_loc": {"type": "geo_point"},
+        "cntr_size": {"type": "integer"},
+        "ocean_fgt": {"type": "double"},
+        "last_user": {
+            "type": "text",
+            "fields": {
+                "keyworld": {
+                    "ignore_above": 256,
+                    "type": "keyword"
+                }
+            }
+        },
+        "last_datetime": {
+            "type": "date",
+            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+        }
+    }
+}
+
+
+
+```
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
