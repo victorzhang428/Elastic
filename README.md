@@ -467,7 +467,7 @@ POST /containers2/_search
 }
 ```
 ### Analyzer
-
+#### 1. Create a new index "container3" with Analyzer called "my_analyzer". And apply it to the cntr_no and last_user fields. 
 ```markdown
 PUT /containers3
 {
@@ -491,7 +491,7 @@ PUT /containers3
                   "analyzer": "my_analyzer", 
                   "fields": {
                       "keyword": {
-                          "ignore_above": 30,
+                          "ignore_above": 100,
                           "type": "keyword"
                       }
                   }
@@ -513,6 +513,7 @@ PUT /containers3
               },
               "last_user": {
                   "type": "text",
+                  "analyzer": "my_analyzer",
                   "fields": {
                       "keyword": {
                           "ignore_above": 256,
@@ -528,7 +529,68 @@ PUT /containers3
      }    
 }
 ```
+#### 2. Add documents to the index
 
+```markdown
+PUT /containers3/_doc/id_4
+{
+   "cntr_no": "container number more than 30 characters",   
+   "customer_no": "FDS",   
+    "poa": "USLAX",  
+     "poa_loc": {
+      "lat": "34.0522",
+      "lon": "118.2437"
+    },
+    "cntr_size": "45",   
+    "ocean_fgt": 4000,   
+    "last_user": "John",
+   "last_datetime": "2022-03-26 22:05:17"
+}
+```
+```markdown
+PUT /containers3/_doc/id_5
+{
+   "cntr_no": "container number less than 100 characters",   
+   "customer_no": "FDS",   
+    "poa": "USLAX",  
+     "poa_loc": {
+      "lat": "34.0522",
+      "lon": "118.2437"
+    },
+    "cntr_size": "45",   
+    "ocean_fgt": 5000,   
+    "last_user": "Tom",
+   "last_datetime": "2022-03-29 22:05:17"
+}
+```
+#### 3. Now search the cntr_no and last_user again. You will see the only matched cntr_no will show. Also you can now search by using the uppercase.
+
+```markdown
+POST /containers3/_search
+{
+    "query": {
+        "match": {
+        "cntr_no": "container number less than 100 characters"
+        }
+    }
+}
+```
+```markdown
+GET /containers3/_search
+{
+    "fields": [
+        "customer_no",
+        "cntr_no",
+        "last_datetime"
+    ],
+    "query": {
+        "terms": {
+            "last_user": ["John", "Tom"]
+        }
+    },
+    "_source": false
+}
+```
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
