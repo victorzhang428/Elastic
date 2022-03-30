@@ -340,8 +340,31 @@ PUT /containers2/_doc/id_3
 }
 
 ```
-#### 3. Validate ignore_above
-This document will be indexed, but without indexing the "cntr_no" field.
+#### 3. Get document by date range
+```markdown
+POST /containers2/_search
+{
+    "fields": [
+        "customer_no",
+        "cntr_no",
+        "last_datetime",
+        "ocean_fgt"
+    ],
+    "query": {
+        "range": {
+            "last_datetime": {
+                "gte": "2022-03-21",
+                "lte": "2022-03-25"
+            }
+        }
+    },
+    "_source": false
+}
+```
+#### 4. Understand ignore_above compare to VARCHAR() type
+
+This document will be indexed, but without indexing the "cntr_no" field as keyword. Simular to SQL VARCHAR(30) date type, but the difference is in SQL the string will be truncated to 30 characters.
+
 ```markdown
 PUT /containers2/_doc/id_4
 {
@@ -385,11 +408,11 @@ POST /containers2/_search
 ```
 ##### The primary difference between the text datatype and the keyword datatype is that text fields are analyzed at the time of indexing, and keyword fields are not. What that means is, text fields are broken down into their individual terms at indexing to allow for partial matching, while keyword fields are indexed as is.
 
-#### 4. Update mapping for an index
+#### 5. Update mapping for an index
 
 Change ignore_above from 30 to 100:
 ```markdown
-PPUT containers2/_mapping
+PUT containers2/_mapping
 {
     "properties": {
       "cntr_no": {
@@ -404,39 +427,35 @@ PPUT containers2/_mapping
     }
   }
 ```
-
+Then add a new document.
+```markdown
+PUT /containers2/_doc/id_5
+{
+   "cntr_no": "container number less than 100 characters",   
+   "customer_no": "FDS",   
+    "poa": "USLAX",  
+     "poa_loc": {
+      "lat": "34.0522",
+      "lon": "118.2437"
+    },
+    "cntr_size": "45",   
+    "ocean_fgt": 5000,   
+    "last_user": "John",
+   "last_datetime": "2022-03-29 22:05:17"
+}
+```
 Now search again using keyword:
 ```markdown
 POST /containers2/_search
 {
     "query": {
         "match": {
-        "cntr_no.keyword": "container number more than 30 characters"
+        "cntr_no.keyword": "container number less than 100 characters"
         }
     }
 }
 ```
-#### 3. Get document by date range
-```markdown
-POST /containers2/_search
-{
-    "fields": [
-        "customer_no",
-        "cntr_no",
-        "last_datetime",
-        "ocean_fgt"
-    ],
-    "query": {
-        "range": {
-            "last_datetime": {
-                "gte": "2022-03-21",
-                "lte": "2022-03-25"
-            }
-        }
-    },
-    "_source": false
-}
-```
+
 
 ### Jekyll Themes
 
