@@ -563,32 +563,16 @@ PUT /containers3/_doc/id_5
    "last_datetime": "2022-03-29 22:05:17"
 }
 ```
-#### 3. Now search the cntr_no and last_user again. You will see the only matched cntr_no will show. Also you can now search by using the uppercase.
+#### 3. Now search the cntr_no again. You will see the only matched cntr_no will show. Also you can now search by using the uppercase.
 
 ```markdown
 POST /containers3/_search
 {
     "query": {
         "match": {
-        "cntr_no": "container number less than 100 characters"
+        "cntr_no": "CONTAINER number less than 100 characters"
         }
     }
-}
-```
-```markdown
-GET /containers3/_search
-{
-    "fields": [
-        "customer_no",
-        "cntr_no",
-        "last_datetime"
-    ],
-    "query": {
-        "terms": {
-            "last_user": ["John", "Tom"]
-        }
-    },
-    "_source": false
 }
 ```
 ### Jekyll Themes
