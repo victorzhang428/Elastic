@@ -361,7 +361,26 @@ POST /containers2/_search
     "_source": false
 }
 ```
-#### 4. Understand ignore_above compare to VARCHAR() type
+#### 4. Get document by Geo Distance (Get cnotainer within 1000 miles from Secaucus NJ)
+```markdown
+POST containers2/_search
+{
+  "query": {
+    "bool" : {
+      "filter" : {
+        "geo_distance" : {
+          "distance" : "1000mi",
+          "poa_loc": {
+            "lat": 40.7895,
+            "lon": 74.0565
+          }
+        }
+      }
+    }
+  }
+}
+```
+#### 5. Understand ignore_above compare to VARCHAR() type
 
 This document will be indexed, but without indexing the "cntr_no" field as keyword. Simular to SQL VARCHAR(30) date type, but the difference is in SQL the string will be truncated to 30 characters.
 
@@ -408,7 +427,7 @@ POST /containers2/_search
 ```
 ##### The primary difference between the text datatype and the keyword datatype is that text fields are analyzed at the time of indexing, and keyword fields are not. What that means is, text fields are broken down into their individual terms at indexing to allow for partial matching, while keyword fields are indexed as is.
 
-#### 5. Update mapping for an index
+#### 6. Update mapping for an index
 
 Change ignore_above from 30 to 100:
 ```markdown
