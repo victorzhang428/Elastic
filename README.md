@@ -466,7 +466,68 @@ POST /containers2/_search
     }
 }
 ```
+### Analyzer
 
+```markdown
+PUT /containers3
+{
+    "settings": {
+        "number_of_shards": 1,
+        "analysis": {
+        "analyzer": {
+            "my_analyzer": {
+                "tokenizer": "keyword",
+                "filter": [
+                    "lowercase"
+                ]
+            }
+          }
+        }
+    },
+    "mappings": {
+          "properties": {
+              "cntr_no": {
+                  "type": "text",
+                  "analyzer": "my_analyzer", 
+                  "fields": {
+                      "keyword": {
+                          "ignore_above": 30,
+                          "type": "keyword"
+                      }
+                  }
+              },
+              "customer_no": {
+                  "type": "text"
+              },
+              "poa": {
+                  "type": "text"
+              },
+              "poa_loc": {
+                  "type": "geo_point"
+              },
+              "cntr_size": {
+                  "type": "integer"
+              },
+              "ocean_fgt": {
+                  "type": "double"
+              },
+              "last_user": {
+                  "type": "text",
+                  "fields": {
+                      "keyword": {
+                          "ignore_above": 256,
+                          "type": "keyword"
+                      }
+                  }
+              },
+              "last_datetime": {
+                  "type": "date",
+                  "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+              }
+          }
+     }    
+}
+```
 
 ### Jekyll Themes
 
