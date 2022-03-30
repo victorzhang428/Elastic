@@ -455,6 +455,17 @@ POST /containers2/_search
     }
 }
 ```
+Now search again without keyword:
+```markdown
+POST /containers2/_search
+{
+    "query": {
+        "match": {
+        "cntr_no": "container number less than 100 characters"
+        }
+    }
+}
+```
 
 
 ### Jekyll Themes
