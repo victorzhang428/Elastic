@@ -594,6 +594,41 @@ POST /containers3/_search
     }
 }
 ```
+
+### DSL Boolean Query
+#### 1. Must clause example (select * from container where customer_no='BBB' AND last_user='Tom'). 
+Change the must clause to filter will return the same, but the score will be ignored.
+```markdown
+POST containers2/_search
+{
+  "query": {
+    "bool" : {
+      "must" : [{
+        "match" : { "customer_no" : "BBB"}
+      },{
+        "match" : { "last_user": "TOM"  }
+      }]
+    } 
+  }
+}  
+```
+
+#### 2. Should clause example (select * from container where customer_no='BBB' or last_user='John'). 
+Change the must clause to filter will return the same, but the score will be ignored.
+```markdown
+POST containers2/_search
+{
+  "query": {
+    "bool" : {
+      "should" : [{
+        "match" : { "customer_no" : "BBB"}
+      },{
+        "match" : { "last_user": "john"  }
+      }]
+    } 
+  }
+}  
+```
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
