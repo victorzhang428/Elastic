@@ -485,7 +485,7 @@ POST /containers2/_search
     }
 }
 ```
-### Analyzer
+### Understand Analyzer
 #### 1. Create a new index "container3" with Analyzer called "my_analyzer". And apply it to the cntr_no and last_user fields. 
 ```markdown
 PUT /containers3
