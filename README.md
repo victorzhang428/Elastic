@@ -841,6 +841,24 @@ PUT /containers4/_doc/id_3
 }
 
 ```
+#### Get the containers which have RD event
+```markdown
+GET /containers4/_search
+{
+  "query": {
+    "nested": {
+      "path": "cntr_event",
+      "query": {
+        "bool": {
+          "must": [
+            { "match": { "cntr_event.event_code": "RD" } }
+          ]
+        }
+      }
+    }
+  }
+}
+```
 ### Jekyll Themes
 
 
