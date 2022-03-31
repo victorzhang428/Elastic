@@ -613,8 +613,8 @@ POST containers2/_search
 }  
 ```
 
-#### 2. Should clause example (select * from container where customer_no='BBB' or last_user='John'). 
-Change the must clause to filter will return the same, but the score will be ignored.
+#### 2. Should clause example (select * from container where customer_no='BBB' OR last_user='John'). 
+
 ```markdown
 POST containers2/_search
 {
@@ -628,6 +628,57 @@ POST containers2/_search
     } 
   }
 }  
+```
+#### 3. Must_not clause example (select * from container where customer_no !='BBB' AND last_user !='John'). 
+
+```markdown
+POST containers2/_search
+{
+  "query": {
+    "bool" : {
+      "must_not" : [{
+        "match" : { "customer_no" : "BBB"}
+      },{
+        "match" : { "last_user": "john"  }
+      }]
+    } 
+  }
+}  
+```
+#### 3. Writer a DSL query to get containers that match below conditoins:
+       * Last user have "Tom" or "John" as the name
+       * Customer # is not CNS
+       * Ocean freight is less than 4000  
+       * Containers are within 1000 miles from Secaucus NJ            
+
+```markdown
+POST containers2/_search
+{
+  "query": {
+    "bool" : {
+      "should": [{
+        "match" : { "last_user" : "tom"}
+      },{
+        "match" : { "last_user": "john"  }
+      }],
+      "must_not": {
+        "match" : { "customer_no": "CNS"}
+      },
+      "must": {
+        "range" : { "ocean_fgt": {"lte":4000}}
+      },
+      "filter":{
+        "geo_distance" : {
+          "distance" : "1000mi",
+          "poa_loc": {
+            "lat": 40.7895,
+            "lon": 74.0565
+          }
+        }
+      }
+    } 
+  }
+}
 ```
 ### Jekyll Themes
 
