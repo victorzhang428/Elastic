@@ -748,7 +748,7 @@ PUT /containers4
                             },
                           "event_date": {
                                 "type": "date",
-                                "format": "yyyy/MM/dd HH:mm:ss||yyyy/MM/dd||epoch_millis"
+                                "format": "MM/dd/yyyy"
                             }
                         }
                     }
@@ -771,19 +771,20 @@ PUT /containers4/_doc/id_1
     "ocean_fgt": 1000,
     "last_user": "Tom",
     "last_datetime": "2022-03-20 22:58:12",
-    "cntr_event" : [
-             { "event_code" : "BE",
-               "event_date" :  "02/01/2022"
-              },
-              { "event_code" : "BE",
-               "event_date" :  "02/10/2022"
-              },
-              { "event_code" : "CT",
-                 "event_date" :  "02/15/2022"
-              },
-              { "event_code" : "RD",
-                 "event_date" :  "04/01/2022"
-           }]
+    "cntr_event":[
+         {"event_code": "BE",
+          "event_date": "02/01/2022"
+         },
+         {"event_code": "BE",
+          "event_date": "02/10/2022"
+         },
+         {"event_code": "CT",
+          "event_date": "02/15/2022"
+         },
+         {"event_code": "RD",
+          "event_date": "04/01/2022"
+         }
+    ]
 }
 
 ```
@@ -801,16 +802,17 @@ PUT /containers4/_doc/id_2
    "ocean_fgt": 2000,   
    "last_user": "Jack",
    "last_datetime": "2022-03-23 22:33:29",
-   "cntr_event" : [
-             { "event_code" : "BE",
-               "event_date" :  "02/5/2022"
-              },
-              { "event_code" : "BE",
-               "event_date" :  "02/08/2022"
-              },
-              { "event_code" : "CT",
-                 "event_date" :  "02/15/2022"
-              }]
+   "cntr_event":[
+         {"event_code": "BE",
+          "event_date": "02/02/2022"
+         },
+         {"event_code": "BE",
+          "event_date": "02/12/2022"
+         },
+         {"event_code": "CT",
+          "event_date": "02/15/2022"
+         }
+    ]
  }
 
 ```
@@ -828,13 +830,14 @@ PUT /containers4/_doc/id_3
     "ocean_fgt": 3000,   
     "last_user": "John",
    "last_datetime": "2022-03-26 22:05:17",
-   "cntr_event" : [
-             { "event_code" : "BE",
-               "event_date" :  "02/01/2022"
-              },
-              { "event_code" : "BE",
-               "event_date" :  "02/10/2022"
-              }]
+   "cntr_event":[
+         {"event_code": "BE",
+          "event_date": "01/01/2022"
+         },
+         {"event_code": "BE",
+          "event_date": "03/10/2022"
+         }
+    ]
 }
 
 ```
