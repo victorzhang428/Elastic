@@ -681,7 +681,166 @@ POST containers2/_search
   }
 }
 ```
+### Nested Filed
+#### 1. Create a nested field for container event in the mapping.
+```markdown
+PUT /containers4
+{
+    "settings": {
+        "number_of_shards": 1,
+        "analysis": {
+        "analyzer": {
+            "my_analyzer": {
+                "tokenizer": "keyword",
+                "filter": [
+                    "lowercase"
+                ]
+            }
+          }
+        }
+    },
+    "mappings": {
+          "properties": {
+              "cntr_no": {
+                  "type": "text",
+                  "analyzer": "my_analyzer", 
+                  "fields": {
+                      "keyword": {
+                          "ignore_above": 100,
+                          "type": "keyword"
+                      }
+                  }
+              },
+              "customer_no": {
+                  "type": "text"
+              },
+              "poa": {
+                  "type": "text"
+              },
+              "poa_loc": {
+                  "type": "geo_point"
+              },
+              "cntr_size": {
+                  "type": "integer"
+              },
+              "ocean_fgt": {
+                  "type": "double"
+              },
+              "last_user": {
+                  "type": "text",
+                  "analyzer": "my_analyzer",
+                  "fields": {
+                      "keyword": {
+                          "ignore_above": 256,
+                          "type": "keyword"
+                      }
+                  }
+              },
+              "last_datetime": {
+                  "type": "date",
+                  "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+              },
+              "cntr_event": {
+                        "type": "nested",
+                        "properties": {
+                        	"event_code": {
+                                "type": "keyword"
+                            },
+                          "event_date": {
+                                "type": "date",
+                                "format": "yyyy/MM/dd HH:mm:ss||yyyy/MM/dd||epoch_millis"
+                            }
+                        }
+                    }
+          }
+     }    
+}
+```
+#### 2. Add documents
+```markdown
+PUT /containers4/_doc/id_1
+{
+    "cntr_no": "no_1",
+    "customer_no": "BBB",
+    "poa": "USMNT",
+    "poa_loc": {
+      "lat": "32.3792",
+      "lon": "86.3077"
+    },
+    "cntr_size": 20,
+    "ocean_fgt": 1000,
+    "last_user": "Tom",
+    "last_datetime": "2022-03-20 22:58:12",
+    "cntr_event" : [
+             { "event_code" : "BE",
+               "event_date" :  "02/01/2022"
+              },
+              { "event_code" : "BE",
+               "event_date" :  "02/10/2022"
+              },
+              { "event_code" : "CT",
+                 "event_date" :  "02/15/2022"
+              },
+              { "event_code" : "RD",
+                 "event_date" :  "04/01/2022"
+           }]
+}
+
+```
+```markdown
+PUT /containers4/_doc/id_2
+ {
+   "cntr_no": "no_2",   
+   "customer_no": "CNS",   
+   "poa": "USLGB",   
+   "poa_loc": {
+      "lat": "33.7701",
+      "lon": "118.1937"
+    },
+   "cntr_size": "40",   
+   "ocean_fgt": 2000,   
+   "last_user": "Jack",
+   "last_datetime": "2022-03-23 22:33:29",
+   "cntr_event" : [
+             { "event_code" : "BE",
+               "event_date" :  "02/5/2022"
+              },
+              { "event_code" : "BE",
+               "event_date" :  "02/08/2022"
+              },
+              { "event_code" : "CT",
+                 "event_date" :  "02/15/2022"
+              }]
+ }
+
+```
+```markdown
+PUT /containers4/_doc/id_3
+{
+   "cntr_no": "no_3",   
+   "customer_no": "FDS",   
+    "poa": "USLAX",  
+     "poa_loc": {
+      "lat": "34.0522",
+      "lon": "118.2437"
+    },
+    "cntr_size": "45",   
+    "ocean_fgt": 3000,   
+    "last_user": "John",
+   "last_datetime": "2022-03-26 22:05:17",
+   "cntr_event" : [
+             { "event_code" : "BE",
+               "event_date" :  "02/01/2022"
+              },
+              { "event_code" : "BE",
+               "event_date" :  "02/10/2022"
+              }]
+}
+
+```
 ### Jekyll Themes
+
+
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
