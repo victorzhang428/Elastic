@@ -646,12 +646,12 @@ POST containers2/_search
 }  
 ```
 #### 3. Writer a DSL query to get containers that match below conditoins:
-```markdown
+
        ##### -Last user have "Tom" or "John" as the name
        ##### -Customer # is not CNS
        ##### -Ocean freight is less than 4000  
        ##### -Containers are within 1000 miles from Secaucus NJ            
-```
+
 ```markdown
 POST containers2/_search
 {
