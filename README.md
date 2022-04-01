@@ -859,7 +859,90 @@ GET /containers4/_search
   }
 }
 ```
-### Jekyll Themes
+### Parent-Child Index
+
+#### 1. Create mapping for parent-child relationship
+```markdown
+PUT /containers5
+{
+    "settings": {
+        "number_of_shards": 1,
+        "analysis": {
+        "analyzer": {
+            "my_analyzer": {
+                "tokenizer": "keyword",
+                "filter": [
+                    "lowercase"
+                ]
+            }
+          }
+        }
+    },
+    "mappings": {
+          "properties": {
+              "container":{
+                "properties":{
+                  "cntr_no": {
+                    "type": "text",
+                    "analyzer": "my_analyzer", 
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 100,
+                            "type": "keyword"
+                        }
+                      }
+                  },
+                  "customer_no": {
+                      "type": "text"
+                  },
+                  "poa": {
+                      "type": "text"
+                  },
+                  "poa_loc": {
+                      "type": "geo_point"
+                  },
+                  "cntr_size": {
+                      "type": "integer"
+                  },
+                  "ocean_fgt": {
+                      "type": "double"
+                  },
+                  "last_user": {
+                      "type": "text",
+                      "analyzer": "my_analyzer",
+                      "fields": {
+                          "keyword": {
+                              "ignore_above": 256,
+                              "type": "keyword"
+                          }
+                      }
+                  },
+                  "last_datetime": {
+                      "type": "date",
+                      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+              }}
+              },
+              "event": {
+                "properties": {
+                    "event_code": {
+                        "type": "keyword"
+                    },
+                    "event_date": {
+                        "type": "date",
+                        "format": "yyyy/MM/dd HH:mm:ss||yyyy/MM/dd||epoch_millis"
+                    }
+                }
+            },
+            "container_event_join_field": {
+                "type": "join",
+                "relations": {
+                    "container_parent": "event_child"
+                }
+            }
+          }
+     }    
+}
+```
 
 
 
