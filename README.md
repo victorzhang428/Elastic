@@ -943,9 +943,131 @@ PUT /containers5
      }    
 }
 ```
+#### 2. Create parent - container
+```markdown
+PUT /containers5/_doc/1
+{ 
+  "container":{
+    "id": 1,
+    "cntr_no": "no_1",
+    "customer_no": "BBB",
+    "poa": "USMNT",
+    "poa_loc": {
+      "lat": "32.3792",
+      "lon": "86.3077"
+    },
+    "cntr_size": 20,
+    "ocean_fgt": 1000,
+    "last_user": "Tom",
+    "last_datetime": "2022-03-20 22:58:12"
+  },
+  "container_event_join_field": {
+        "name": "container_parent"
+    }
+}
 
+```
+```markdown
+PUT /containers5/_doc/2
+{ 
+  "container":{
+    "id": 2,
+    "cntr_no": "no_2",   
+     "customer_no": "CNS",   
+     "poa": "USLGB",   
+     "poa_loc": {
+        "lat": "33.7701",
+        "lon": "118.1937"
+      },
+     "cntr_size": "40",   
+     "ocean_fgt": 2000,   
+     "last_user": "Jack",
+     "last_datetime": "2022-03-23 22:33:29"
+  },
+  "container_event_join_field": {
+        "name": "container_parent"
+    }
+}
 
+```
+```markdown
+PUT /containers5/_doc/3
+{ 
+  "container":{
+    "id": 3,
+    "cntr_no": "no_3",   
+    "customer_no": "FDS",   
+    "poa": "USLAX",  
+    "poa_loc": {
+      "lat": "34.0522",
+      "lon": "118.2437"
+    },
+    "cntr_size": "45",   
+    "ocean_fgt": 3000,   
+    "last_user": "John",
+    "last_datetime": "2022-03-26 22:05:17"
+  },
+  "container_event_join_field": {
+        "name": "container_parent"
+    }
+}
+```
+#### 2. Create child - events
+```markdown
+PUT /containers5/_doc/4?routing=1&refresh
+{ 
+  "event": {"event_code": "BE", "event_date": "01-01-2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "1"}
+}
 
+PUT /containers5/_doc/5?routing=1&refresh
+{ 
+  "event": {"event_code": "BE", "event_date": "02/10/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "1"}
+}
+
+PUT /containers5/_doc/6?routing=1&refresh
+{ 
+  "event": {"event_code": "CT", "event_date": "02/15/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "1"}
+}
+
+PUT /containers5/_doc/7?routing=1&refresh
+{ 
+  "event": {"event_code": "RD", "event_date": "04/01/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "1"}
+}
+
+PUT /containers5/_doc/8?routing=1&refresh
+{ 
+  "event": {"event_code": "BE", "event_date": "02/02/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "2"}
+}
+
+PUT /containers5/_doc/9?routing=1&refresh
+{ 
+  "event": {"event_code": "BE", "event_date": "02/12/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "2"}
+}
+
+PUT /containers5/_doc/9?routing=1&refresh
+{ 
+  "event": {"event_code": "CT", "event_date": "02/15/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "2"}
+}
+
+PUT /containers5/_doc/10?routing=1&refresh
+{ 
+  "event": {"event_code": "BE", "event_date": "01/01/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "3"}
+}
+
+PUT /containers5/_doc/11?routing=1&refresh
+{ 
+  "event": {"event_code": "BE", "event_date": "03/10/2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "3"}
+}
+```
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
