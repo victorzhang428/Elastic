@@ -1022,51 +1022,52 @@ PUT /containers5/_doc/4?routing=1&refresh
 
 PUT /containers5/_doc/5?routing=1&refresh
 { 
-  "event": {"event_code": "BE", "event_date": "02/10/2022"},
+  "event": {"event_code": "BE", "event_date": "02-10-2022"},
   "container_event_join_field": {"name": "event_child", "parent": "1"}
 }
 
 PUT /containers5/_doc/6?routing=1&refresh
 { 
-  "event": {"event_code": "CT", "event_date": "02/15/2022"},
+  "event": {"event_code": "CT", "event_date": "02-15-2022"},
   "container_event_join_field": {"name": "event_child", "parent": "1"}
 }
 
 PUT /containers5/_doc/7?routing=1&refresh
 { 
-  "event": {"event_code": "RD", "event_date": "04/01/2022"},
+  "event": {"event_code": "RD", "event_date": "04-01-2022"},
   "container_event_join_field": {"name": "event_child", "parent": "1"}
 }
 
 PUT /containers5/_doc/8?routing=1&refresh
 { 
-  "event": {"event_code": "BE", "event_date": "02/02/2022"},
+  "event": {"event_code": "BE", "event_date": "02-02-2022"},
   "container_event_join_field": {"name": "event_child", "parent": "2"}
 }
 
 PUT /containers5/_doc/9?routing=1&refresh
 { 
-  "event": {"event_code": "BE", "event_date": "02/12/2022"},
-  "container_event_join_field": {"name": "event_child", "parent": "2"}
-}
-
-PUT /containers5/_doc/9?routing=1&refresh
-{ 
-  "event": {"event_code": "CT", "event_date": "02/15/2022"},
+  "event": {"event_code": "BE", "event_date": "02-12-2022"},
   "container_event_join_field": {"name": "event_child", "parent": "2"}
 }
 
 PUT /containers5/_doc/10?routing=1&refresh
 { 
-  "event": {"event_code": "BE", "event_date": "01/01/2022"},
-  "container_event_join_field": {"name": "event_child", "parent": "3"}
+  "event": {"event_code": "CT", "event_date": "02-15-2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "2"}
 }
 
 PUT /containers5/_doc/11?routing=1&refresh
 { 
-  "event": {"event_code": "BE", "event_date": "03/10/2022"},
+  "event": {"event_code": "BE", "event_date": "01-01-2022"},
   "container_event_join_field": {"name": "event_child", "parent": "3"}
 }
+
+PUT /containers5/_doc/12?routing=1&refresh
+{ 
+  "event": {"event_code": "BE", "event_date": "03-10-2022"},
+  "container_event_join_field": {"name": "event_child", "parent": "3"}
+}
+
 ```
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
