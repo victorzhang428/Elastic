@@ -1069,6 +1069,23 @@ PUT /containers5/_doc/12?routing=1&refresh
 }
 
 ```
+#### 3. Has-Child Query
+##### To find the containers which have RD event.
+```markdown
+GET /containers5/_search
+{
+    "query": {
+        "has_child": {
+            "type": "event_child",
+            "query": {
+                "term": {
+                    "event.event_code": "RD"
+                }
+            }
+        }
+    }
+}
+```
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
