@@ -1173,7 +1173,7 @@ POST /containers4/_search
 ```markdown
 POST /_sql?format=txt
 {
-   "query": "SELECT * FROM containers4 WHERE cntr_event.event_date < '03/01/2022' order by cntr_no"
+   "query": "SELECT customer_no, cntr_no, cntr_event.event_code, cntr_event.event_date FROM containers4 WHERE cntr_event.event_date < '03/01/2022' order by cntr_no"
    
 }
 ```
