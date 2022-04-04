@@ -1081,7 +1081,8 @@ GET /containers5/_search
                 "term": {
                     "event.event_code": "RD"
                 }
-            }
+            }, 
+            "inner_hits": {}
         }
     }
 }
