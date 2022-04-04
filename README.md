@@ -1128,17 +1128,44 @@ POST /containers4/_search
   }
 }
 ```
-#### 2. Create a store script
+#### 2. Create a stored script with parameter "discount_rate"
 ```markdown
 POST _scripts/fgt_discount
 {
-  "script": {
-    "lang": "painless",
-    "source": 
-    """
-    doc.['ocean_fgt'] * params['my_modifier']
-    """
+  "script" : {
+    "lang" : "painless",
+    "source" : "ctx['_source']['ocean_fgt'] *= params.discount_rate"
   }
+}
+```
+#### 2. Update index by calling the stored script
+```markdown
+POST containers4/_update_by_query
+{
+      "query": {
+        "match": {
+            "customer_no": "BBB"
+        }
+      },
+          "script": {
+            "id": "fgt_discount",
+            "params": {
+              "discount_rate": 0.7
+            }
+          }
+   
+}
+```
+
+#### 3. Query to see the updated ocean_fgt
+```markdown
+POST /containers4/_search
+{
+    "query": {
+        "match": {
+            "customer_no": "BBB"
+        }
+    }
 }
 ```
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
