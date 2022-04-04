@@ -175,7 +175,45 @@ POST /containers/_search
     "_source": false
 }
 ```
-#### 7. Get document by date range (select * from container where last_datetime >='03/21/2022' and last_datetime >='03/25/2022' )
+
+#### 7. Get MAX (select max_ocean_fgt=max(ocean_fgt) from container )
+
+```markdown
+POST /containers/_search
+{
+    "size": 0,
+    "aggs": {
+    "max_ocean_fgt": { "max": { "field": "ocean_fgt" } }
+  }
+}
+```
+#### 8. Update a document by ID
+
+```markdown
+POST /containers/container/id_1/_update
+{
+    "doc":{
+        "last_user":"Victor"
+    }
+}
+```
+#### 9. Update a document by condition
+
+```markdown
+POST /containers/container/_update_by_query
+{
+    "script": {
+        "source": "ctx._source.ocean_fgt=4000",
+        "lang": "painless"
+    },
+    "query": {
+        "match": {
+            "last_user": "John"
+        }
+    }
+}
+```
+#### 10. Get document by date range (select * from container where last_datetime >='03/21/2022' and last_datetime >='03/25/2022' )
 
 ```markdown
 POST /containers/_search
@@ -197,46 +235,9 @@ POST /containers/_search
     "_source": false
 }
 ```
-#### 8. Get MAX (select max_ocean_fgt=max(ocean_fgt) from container )
-
-```markdown
-POST /containers/_search
-{
-    "size": 0,
-    "aggs": {
-    "max_ocean_fgt": { "max": { "field": "ocean_fgt" } }
-  }
-}
-```
-#### 9. Update a document by ID
-
-```markdown
-POST /containers/container/id_1/_update
-{
-    "doc":{
-        "last_user":"Victor"
-    }
-}
-```
-#### 10. Update a document by condition
-
-```markdown
-POST /containers/container/_update_by_query
-{
-    "script": {
-        "source": "ctx._source.ocean_fgt=4000",
-        "lang": "painless"
-    },
-    "query": {
-        "match": {
-            "last_user": "John"
-        }
-    }
-}
-```
 ### Work on Index with Mapping
 
-#### 1. Create a new index with mapping
+#### 1. Create a new index with mapping. (Open elasticsearch-head plugin to compare containers and containers2)
 
 ```markdown
 PUT /containers2
