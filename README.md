@@ -1128,6 +1128,19 @@ POST /containers4/_search
   }
 }
 ```
+#### 2. Create a store script
+```markdown
+POST _scripts/fgt_discount
+{
+  "script": {
+    "lang": "painless",
+    "source": 
+    """
+    doc.['ocean_fgt'] * params['my_modifier']
+    """
+  }
+}
+```
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
