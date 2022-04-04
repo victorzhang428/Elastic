@@ -1138,7 +1138,7 @@ POST _scripts/fgt_discount
   }
 }
 ```
-#### 2. Update index by calling the stored script
+#### 3. Update index by calling the stored script
 ```markdown
 POST containers4/_update_by_query
 {
@@ -1157,7 +1157,7 @@ POST containers4/_update_by_query
 }
 ```
 
-#### 3. Query to see the updated ocean_fgt
+#### 4. Query to see the updated ocean_fgt
 ```markdown
 POST /containers4/_search
 {
@@ -1168,8 +1168,11 @@ POST /containers4/_search
     }
 }
 ```
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/victorzhang428/Elastic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Elasticsearch runs regular SQL
+```markdown
+POST /_sql?format=txt
+{
+   "query": "SELECT * FROM containers4 WHERE cntr_event.event_date < '03/01/2022' order by cntr_no"
+   
+}
+```
