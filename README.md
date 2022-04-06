@@ -1177,7 +1177,7 @@ POST /_sql?format=txt
    
 }
 ```
-'''markdown
+```markdown
 POST _sql
 {
    "query":"""
@@ -1187,7 +1187,7 @@ POST _sql
    """   
 }
 ```
-'''markdown
+```markdown
 POST _sql/translate
 {
    "query":"""
