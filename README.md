@@ -1177,3 +1177,24 @@ POST /_sql?format=txt
    
 }
 ```
+'''markdown
+POST _sql
+{
+   "query":"""
+   SELECT customer_no, cntr_no, cntr_event.event_code, cntr_event.event_date 
+     FROM containers4 
+     WHERE cntr_event.event_date < '03/01/2022' order by cntr_no   
+   """   
+}
+```
+'''markdown
+POST _sql/translate
+{
+   "query":"""
+   SELECT customer_no, cntr_no, cntr_event.event_code, cntr_event.event_date 
+     FROM containers4 
+     WHERE cntr_event.event_date < '03/01/2022' order by cntr_no   
+   """   
+}
+```
+
